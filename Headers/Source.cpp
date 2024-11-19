@@ -1,9 +1,11 @@
 #include <iostream>
 #include <algorithm>
+#include <random>
 using namespace std;
 #include "Card.h";
 #include "Deck.h";
-#include <random>
+#include "Player.h";
+#include "Game.h";
 
 void Card::setDirection(bool direction)
 {
@@ -64,4 +66,25 @@ void Deck::Shuffle()
       }
     }
   }
+}
+
+int Player::getscore()
+{
+  return this->score;
+}
+void Player::setscore(int s)
+{
+  this->score = s;
+}
+
+void Player::displayScore()
+{
+  cout << this->score << endl;
+}
+
+
+
+void Game::initializeGame(){
+  Deck D;
+  D.Shuffle();
 }

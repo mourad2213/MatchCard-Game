@@ -6,7 +6,7 @@ using namespace std;
 
 class PenaltyCard : public Card
 {
-    private:
+private:
     const int penalty = -1;
 
 public:
