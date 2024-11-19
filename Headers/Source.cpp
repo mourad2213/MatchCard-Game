@@ -81,7 +81,7 @@ void Deck::DisplayGrid()
 
   void Deck::Shuffle()
   {
-    int numbers[18] = {0,1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,9};
+    int numbers[16] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8};
       random_device rd;
       mt19937 g(rd());
     shuffle(numbers,numbers+16,g);
