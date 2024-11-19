@@ -3,90 +3,101 @@
 #define CARD_H
 #include <iostream>
 using namespace std;
-class Card {
+class Card
+{
 private:
-    bool direction;//0 is not flipped ,1 flipped
+    bool direction; // 0 is not flipped ,1 flipped
     int value;
 
 public:
-    Card(){
+    Card()
+    {
         this->direction = 0;
         this->value = 0;
     }
-    Card(bool direction, int number){
+    Card(bool direction, int number)
+    {
         this->direction = direction;
         this->value = number;
     }
     virtual ~Card();
 
-    void setDirection(bool direction){
-        this->direction = direction;
-    }
-    bool getDirection() {
-        return direction;
-    }
+    void setDirection(bool direction);
+    bool getDirection();
 
-    void setNumber(int number){
-        this->value = number;
-    }
-    int getNumber(){
-        return value;
-    }
-
-    virtual void display() ;
+    void setNumber(int number);
+    int getNumber();
+    
+    virtual void display();
 };
 
-class StandardCard : public Card {
+class StandardCard : public Card
+{
 public:
     StandardCard();
-    StandardCard(bool direction, int number){
+    StandardCard(bool direction, int number)
+    {
         setNumber(number);
         setDirection(direction);
     }
     ~StandardCard();
-    void display(){
-        if(getDirection()){
-            cout << getNumber()  << endl;
-        } else{
-            cout << "*" <<  endl;
+    void display()
+    {
+        if (getDirection())
+        {
+            cout << getNumber() << endl;
         }
-    }
-};
-
-class BonusCard : public Card {
-public:
-    BonusCard();
-    BonusCard(bool direction, int number){
-        setNumber(number);
-        setDirection(direction);
-    }
-    ~BonusCard();
-    void display(){
-        if(getDirection()){
-            cout << "B" <<  endl;
-        } else{
+        else
+        {
             cout << "*" << endl;
         }
     }
 };
 
-class PenaltyCard : public Card {
+class BonusCard : public Card
+{
+public:
+    BonusCard();
+    BonusCard(bool direction, int number)
+    {
+        setNumber(number);
+        setDirection(direction);
+    }
+    ~BonusCard();
+    void display()
+    {
+        if (getDirection())
+        {
+            cout << "B" << endl;
+        }
+        else
+        {
+            cout << "*" << endl;
+        }
+    }
+};
+
+class PenaltyCard : public Card
+{
 public:
     PenaltyCard();
-    PenaltyCard(bool direction, int number){
+    PenaltyCard(bool direction, int number)
+    {
         setNumber(number);
-        setDirection(direction);}
+        setDirection(direction);
+    }
     ~PenaltyCard();
-    void display(){
-        if(getDirection()){
+    void display()
+    {
+        if (getDirection())
+        {
             cout << "P" << endl;
-        } else{
+        }
+        else
+        {
             cout << "*" << endl;
         }
     }
 };
 
 #endif
-
-
-
