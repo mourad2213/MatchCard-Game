@@ -4,10 +4,16 @@
 using namespace std;
 #include"Card.h"
  class Deck{
-    protected:
-    Card cards[4][4];
+    private:
+    Card* cards[4][4];
     public:
+     Deck(){
+     }
+     Deck(Card c[4][4]){
+      this->cards=c;  
+     }
+     ~Deck();
     void Shuffle();
-     void DisplayGrid();
+    void DisplayGrid();
     };
 #endif
