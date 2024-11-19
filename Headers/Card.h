@@ -33,8 +33,8 @@ public:
 class StandardCard : public Card
 {
 public:
-    Card::StandardCard(){
-        
+    StandardCard(){
+     Card();   
     }
     
 };
