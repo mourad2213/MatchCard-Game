@@ -5,93 +5,63 @@ using namespace std;
 #include "Deck.h";
 #include <random>
 
-
-void Card::setDirection(bool direction){
+void Card::setDirection(bool direction)
+{
   this->direction = direction;
 }
-bool Card::getDirection(){
+bool Card::getDirection()
+{
   return direction;
 }
-void Card::setNumber(int number){
+void Card::setNumber(int number)
+{
   this->value = number;
 }
-int Card::getNumber(){
+int Card::getNumber()
+{
   return value;
 }
-void Card::display() {
-    if (this->direction) {
-        cout << this->value; //value
-    } else {
-        cout << "*"; // *
-    }
+void Card::display()
+{
+  if (this->direction)
+  {
+    cout << this->value; // value
+  }
+  else
+  {
+    cout << "*"; // *
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void Deck::DisplayGrid()
 {
+  for (int i = 0; i < 4; ++i)
+  {
+    for (int j = 0; j < 4; ++j)
+    {
+      std::cout << "[";
+      cards[i][j].display();
+      std::cout << "] ";
+    }
+    std::cout << std::endl;
+  }
 }
 
-  void Deck::Shuffle()
+void Deck::Shuffle()
+{
+  int numbers[16] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8};
+  random_device rd;
+  mt19937 g(rd());
+  shuffle(numbers, numbers + 16, g);
+  for (int m = 0; m < 16; m++)
   {
-    int numbers[16] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8};
-      random_device rd;
-      mt19937 g(rd());
-    shuffle(numbers,numbers+16,g);
-    for(int m =0;m<16;m++){
-      for(int i=0;i<4;i++){
-        for(int j=0;j<4;j++){
-          Card card (&numbers[m],0);
-          cards[i][j]=card;
-        
+    for (int i = 0; i < 4; i++)
+    {
+      for (int j = 0; j < 4; j++)
+      {
+        Card card(&numbers[m], 0);
+        cards[i][j] = card;
       }
     }
-}
   }
+}
