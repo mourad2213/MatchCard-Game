@@ -27,7 +27,7 @@ public:
     void setNumber(int number);
     int getNumber();
     
-    virtual void display(); //not done
+    void display(); //not done
 };
 
 
