@@ -3,7 +3,9 @@ using namespace std;
 #include"Card.h";
 #include"Deck.h";
    
-void Deck::Shuffle(){
+
+class Deck{
+  void Deck::Shuffle(){
 int CountSuperCards=0;
  while(sizeof(cards)/sizeof(Card)!=16){
    int random=(rand()%8)+1;//VALUE
@@ -17,3 +19,6 @@ int CountSuperCards=0;
 void Deck::DisplayGrid(){
 
 }
+}
+
+
