@@ -27,28 +27,11 @@ public:
     void setNumber(int number);
     int getNumber();
     
-    void display(); //not done
+    virtual void display(); //not done
 };
 
-class StandardCard : public Card
-{
-public:
-    Card::StandardCard(){
-        
-    }
-    
-};
 
-class BonusCard : public Card
-{
-public:
-  
-};
 
-class PenaltyCard : public Card
-{
-public:
-    
-};
+
 
 #endif
