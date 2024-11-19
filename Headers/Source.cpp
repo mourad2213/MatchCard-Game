@@ -3,6 +3,7 @@
 using namespace std;
 #include "Card.h";
 #include "Deck.h";
+#include <random>
 
 
 void Card::setDirection(bool direction){
@@ -80,8 +81,10 @@ void Deck::DisplayGrid()
 
   void Deck::Shuffle()
   {
-    int numbers[16] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8};
-    random_shuffle(numbers,numbers+16);
+    int numbers[18] = {0,1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,9};
+      random_device rd;
+      mt19937 g(rd());
+    shuffle(numbers,numbers+16,g);
     for(int m =0;m<16;m++){
       for(int i=0;i<4;i++){
         for(int j=0;j<4;j++){
