@@ -22,7 +22,10 @@ using namespace std;
      ~Deck(){
         
 
-     }
+     }/*
+     Card** getCards(){
+            return Card**
+     }*/
     
 
     void Shuffle();
