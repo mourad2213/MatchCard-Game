@@ -5,7 +5,7 @@ using namespace std;
 #include"Card.h"
  class Deck{
     protected:
-    Card cards[16];
+    Card cards[4][4];
     public:
     void Shuffle();
      void DisplayGrid();

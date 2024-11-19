@@ -4,8 +4,14 @@ using namespace std;
 #include"Deck.h";
    
 void Deck::Shuffle(){
- for(int i=0;i<12;i++){
-    int random=(rand()%6)+1;
+int CountSuperCards=0;
+ while(sizeof(cards)/sizeof(Card)!=16){
+   int random=(rand()%8)+1;//VALUE
+   if(random>6&&CountSuperCards<4){
+      if()
+      CountSuperCards++;
+   }
+
  }
 }
 void Deck::DisplayGrid(){
