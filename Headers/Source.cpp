@@ -6,8 +6,7 @@ Card::Card(){}
 Card::Card(bool direction, int value){}
 Card::~Card(){}
 
-class Deck : public Card
-{
+
   void Deck::Shuffle()
   {
     int CountSuperCards = 0;
@@ -24,12 +23,3 @@ class Deck : public Card
   void Deck::DisplayGrid()
   {
   }
-};
-
-class Player
-{
-};
-
-class Game
-{
-};
