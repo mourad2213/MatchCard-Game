@@ -17,9 +17,13 @@ void Card::setNumber(int number){
 int Card::getNumber(){
   return value;
 }
-
-
-
+void Card::display() {
+    if (this->direction) {
+        cout << this->value; //value
+    } else {
+        cout << "*"; // *
+    }
+}
 
 
 
