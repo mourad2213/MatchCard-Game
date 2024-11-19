@@ -5,18 +5,25 @@ using namespace std;
 #include"Card.h"
  class Deck{
     private:
-    Card* cards[4][4];
+    Card** cards[4][4];
     public:
      Deck(){
+          for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                cards[i][j] = nullptr;
+            }
+        }
      }
-     Deck(Card c[4][4]){
+     Deck(Card** c[4][4]){
        for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
-                cards[i][j] = new Card(c[i][j]); 
+                cards[i][j]= c[i][j];
             }
-        } 
+        }
      }
      ~Deck();
+    
+
     void Shuffle();
     void DisplayGrid();
     };
