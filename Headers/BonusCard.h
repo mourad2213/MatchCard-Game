@@ -16,6 +16,7 @@ public:
     BonusCard(bool direction, int value) : Card(direction, value)
     {
     }
-    
+     int getBonus();
+   
 };
 #endif

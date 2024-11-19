@@ -6,6 +6,8 @@ using namespace std;
 #include "Deck.h";
 #include "Player.h";
 #include "Game.h";
+#include "BonusCard.h";
+#include "PenaltyCard.h"
 
 void Card::setDirection(bool direction)
 {
@@ -81,8 +83,12 @@ void Player::displayScore()
 {
   cout << this->score << endl;
 }
-
-
+int BonusCard::getBonus(){
+  return this->bonus;
+}
+int PenaltyCard::getPenalty(){
+  return this->penalty ;
+}
 
 void Game::initializeGame(){
   Deck D;
