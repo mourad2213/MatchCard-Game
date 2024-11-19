@@ -6,14 +6,13 @@ using namespace std;
 class Card {
 private:
     bool direction;//0 is not flipped ,1 flipped
-
-    int number;
+    int value;
 
 public:
     Card();
     Card(bool direction, int number){
         this->direction = direction;
-        this->number = number;
+        this->value = number;
     }
     virtual ~Card();
 
@@ -25,10 +24,10 @@ public:
     }
 
     void setNumber(int number){
-        this->number = number;
+        this->value = number;
     }
     int getNumber(){
-        return number;
+        return value;
     }
 
     virtual void display() ;
