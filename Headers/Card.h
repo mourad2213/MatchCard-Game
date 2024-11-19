@@ -20,84 +20,35 @@ public:
         this->direction = direction;
         this->value = number;
     }
-    virtual ~Card();
+    ~Card();
 
     void setDirection(bool direction);
     bool getDirection();
-
     void setNumber(int number);
     int getNumber();
     
-    virtual void display();
+    void display(); //not done
 };
 
 class StandardCard : public Card
 {
 public:
-    StandardCard();
-    StandardCard(bool direction, int number)
-    {
-        setNumber(number);
-        setDirection(direction);
+    Card::StandardCard(){
+        
     }
-    ~StandardCard();
-    void display()
-    {
-        if (getDirection())
-        {
-            cout << getNumber() << endl;
-        }
-        else
-        {
-            cout << "*" << endl;
-        }
-    }
+    
 };
 
 class BonusCard : public Card
 {
 public:
-    BonusCard();
-    BonusCard(bool direction, int number)
-    {
-        setNumber(number);
-        setDirection(direction);
-    }
-    ~BonusCard();
-    void display()
-    {
-        if (getDirection())
-        {
-            cout << "B" << endl;
-        }
-        else
-        {
-            cout << "*" << endl;
-        }
-    }
+  
 };
 
 class PenaltyCard : public Card
 {
 public:
-    PenaltyCard();
-    PenaltyCard(bool direction, int number)
-    {
-        setNumber(number);
-        setDirection(direction);
-    }
-    ~PenaltyCard();
-    void display()
-    {
-        if (getDirection())
-        {
-            cout << "P" << endl;
-        }
-        else
-        {
-            cout << "*" << endl;
-        }
-    }
+    
 };
 
 #endif
