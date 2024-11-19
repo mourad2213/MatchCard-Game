@@ -5,7 +5,8 @@ using namespace std;
 #include"Card.h"
  class Deck{
     private:
-    Card** cards = new Card*[4]; 
+    Card** cards = new Card*[4];
+    
     public:
      Deck(){
        for (int i = 0; i < 4; i++) {
@@ -19,13 +20,9 @@ using namespace std;
             }
         }
      }
-     ~Deck(){
-        
+     ~Deck();
+     
 
-     }/*
-     Card** getCards(){
-            return Card**
-     }*/
     
 
     void Shuffle();
