@@ -9,7 +9,10 @@ private:
     int value;
 
 public:
-    Card();
+    Card(){
+        this->direction = 0;
+        this->value = 0;
+    }
     Card(bool direction, int number){
         this->direction = direction;
         this->value = number;
