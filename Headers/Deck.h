@@ -10,7 +10,11 @@ using namespace std;
      Deck(){
      }
      Deck(Card c[4][4]){
-      this->cards=c;  
+       for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                cards[i][j] = new Card(c[i][j]); 
+            }
+        } 
      }
      ~Deck();
     void Shuffle();
