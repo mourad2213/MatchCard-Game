@@ -30,25 +30,4 @@ public:
     void display(); //not done
 };
 
-class StandardCard : public Card
-{
-public:
-    StandardCard(){
-     Card();   
-    }
-    
-};
-
-class BonusCard : public Card
-{
-public:
-  
-};
-
-class PenaltyCard : public Card
-{
-public:
-    
-};
-
 #endif

@@ -1,5 +1,5 @@
-#ifndef STANDARDCAR_H
-#define STANDARDCAR_H
+#ifndef PENALTYCARD_H
+#define PENALTYCARD_H
 #include <iostream>
 #include "Card.h";
 using namespace std;
