@@ -55,10 +55,10 @@ void Deck::DisplayGrid()
 
 void Deck::Shuffle()
 {
+      srand(time(0));
   for (int i = 0; i < 16; i++)
   {
-    srand(time(0));
-    int j = rand() % (15 + 1);
+    int j = rand() % (15 + 1);//[1,16]
     swap(collection[i], collection[j]);
   }
 
