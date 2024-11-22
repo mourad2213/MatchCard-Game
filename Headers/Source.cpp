@@ -47,7 +47,8 @@ void Deck::DisplayGrid()
       cout << endl;
     }
     cout << "[";
-    cards[i]->display();
+    //cards[i]->display();
+    cout<<cards[i]->getValue();
     cout << "] ";
   }
   cout << endl;
