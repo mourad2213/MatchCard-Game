@@ -8,6 +8,7 @@ using namespace std;
 #include "Game.h"
 #include "BonusCard.h"
 #include "PenaltyCard.h"
+#include <time.h>
 
 void Card::setDirection(bool direction)
 {
@@ -23,7 +24,7 @@ void Card::setNumber(int number)
 }
 int Card::getNumber()
 {
-  return value;
+  return this->value;
 }
 void Card::display()
 {
@@ -41,11 +42,12 @@ void Deck::DisplayGrid()
 {
   for (int i = 0; i < 16; i++)
   {
-    if (i % 4 == 0){
+    if (i % 4 == 0)
+    {
       cout << endl;
     }
     cout << "[";
-    cards[i]->display();
+    cout << cards[i]->getNumber();
     cout << "] ";
   }
   cout << endl;
@@ -53,20 +55,17 @@ void Deck::DisplayGrid()
 
 void Deck::Shuffle()
 {
-  // Use a random device and Mersenne Twister for randomness
-  std::random_device rd; // Random device
-  std::mt19937 g(rd());  // Seeded random number generator
+  for (int i = 0; i < 16; i++)
+  {
+    srand(time(0));
+    int j = rand() % (15 + 1);
+    swap(collection[i], collection[j]);
+  }
 
-  // Shuffle the collection of cards
-  std::shuffle(collection, collection + 16, g);
-
-  // Optionally, map shuffled collection back to grid (if needed)
   for (int i = 0; i < 16; ++i)
   {
     cards[i] = collection[i];
   }
-
-  cout << "Deck shuffled!" << endl;
 }
 
 int Player::getscore()
