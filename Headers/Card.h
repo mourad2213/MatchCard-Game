@@ -22,11 +22,11 @@ public:
     }
     ~Card() {}
 
-    virtual void setDirection(bool direction);
-    virtual bool getDirection();
-    virtual void setValue(int number);
-    virtual int getValue();
-    void display();
+     void setDirection(bool direction);
+     bool getDirection();
+    void setValue(int number);
+     int getValue();
+    virtual void display();
 };
 
 #endif

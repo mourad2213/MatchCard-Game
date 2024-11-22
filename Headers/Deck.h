@@ -25,20 +25,20 @@ public:
                 collection[m] = new BonusCard(0, i);     
                 m++;
                 collection[m] = new BonusCard(0, i);    
-                //m++;
+                
                 }
                 
                 else if(i==8){
                 collection[m] = new PenaltyCard(0, i); 
                 m++;    
                 collection[m] = new PenaltyCard(0, i); 
-                ///m++;
+                
                 }
                 else{
                 collection[m] = new StandardCard(0, i); 
                 m++;
                 collection[m] = new StandardCard(0, i); 
-                //m++;
+                
                 }
         
             }
