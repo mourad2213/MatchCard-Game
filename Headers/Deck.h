@@ -5,18 +5,25 @@ using namespace std;
 #include"Card.h"
  class Deck{
     private:
-    Card** cards = new Card*[4];
-    
+    Card** cards = new Card*[4];//grid
+    //
+    Card* collection[16];//collection
+        
     public:
      Deck(){
-       for (int i = 0; i < 4; i++) {
-        cards[i] = new Card[4];  
-    }
+        for(int m=0;m<16;){
+            for(int i=1;i<=8;i++){
+                collection[m]=new Card(0,i);//
+                m++;
+                collection[m]=new Card(0,i);//
+            }
+        }
      }
      Deck(Card** c){
-       for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 4; ++j) {
-                cards[i][j]= c[i][j];
+        c= new Card*[4];
+       for(int m=0;m<16;m++){
+            for(int i=0;i<8;i++){
+                collection[m]= &Card(i,0);
             }
         }
      }
@@ -24,7 +31,12 @@ using namespace std;
      
 
     
-
+    Card**getcards(){
+        return cards;
+    }
+    void setcards(Card** c){
+        cards=c;
+    }
     void Shuffle();
     void DisplayGrid();
     };
