@@ -6,7 +6,7 @@ using namespace std;
 class Card
 {
 private:
-    bool direction; // 0 is not flipped ,1 flipped
+    bool direction; // 0 is not flipped 1 flipped
     int value;
 
 public:
@@ -20,16 +20,13 @@ public:
         this->direction = direction;
         this->value = number;
     }
-    ~Card(){
-        
-    }
+    ~Card() {}
 
     void setDirection(bool direction);
     bool getDirection();
-    void setNumber(int number);
-    int getNumber();
-    
-    void display(); //not done
+    void setValue(int number);
+    int getValue();
+    void display();
 };
 
 #endif
