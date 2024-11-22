@@ -38,34 +38,36 @@ void Card::display()
 }
 
 void Deck::DisplayGrid()
-    {
-        cout << "Deck Layout (4x4 Grid):" << endl;
-        for (int i = 0; i < 16; i++)
-        {
-            if (i % 4 == 0)
-                cout << endl;
+{
+  cout << "Deck Layout (4x4 Grid):" << endl;
+  for (int i = 0; i < 16; i++)
+  {
+    if (i % 4 == 0)
+      cout << endl;
 
-            cout << "[" << cards[i]->getNumber() << "] ";
-        }
-        cout << endl;
-    }
+    cout << "[";
+    cards[i]->display();
+    cout << "] ";
+  }
+  cout << endl;
+}
 
 void Deck::Shuffle()
 {
-    // Use a random device and Mersenne Twister for randomness
-    std::random_device rd; // Random device
-    std::mt19937 g(rd());  // Seeded random number generator
+  // Use a random device and Mersenne Twister for randomness
+  std::random_device rd; // Random device
+  std::mt19937 g(rd());  // Seeded random number generator
 
-    // Shuffle the collection of cards
-    std::shuffle(collection, collection + 16, g);
+  // Shuffle the collection of cards
+  std::shuffle(collection, collection + 16, g);
 
-    // Optionally, map shuffled collection back to grid (if needed)
-    for (int i = 0; i < 16; ++i)
-    {
-        cards[i] = collection[i];
-    }
+  // Optionally, map shuffled collection back to grid (if needed)
+  for (int i = 0; i < 16; ++i)
+  {
+    cards[i] = collection[i];
+  }
 
-    cout << "Deck shuffled!" << endl;
+  cout << "Deck shuffled!" << endl;
 }
 
 int Player::getscore()
@@ -81,24 +83,27 @@ void Player::displayScore()
 {
   cout << this->score << endl;
 }
-int BonusCard::getBonus(){
+int BonusCard::getBonus()
+{
   return this->bonus;
 }
-int PenaltyCard::getPenalty(){
-  return this->penalty ;
+int PenaltyCard::getPenalty()
+{
+  return this->penalty;
 }
 
-void Game::initializeGame(){
+void Game::initializeGame()
+{
   d.Shuffle();
   d.DisplayGrid();
 }
 
-int main(){
-    Deck* d = new Deck();
-    Game* g = new Game();
+int main()
+{
+  Deck *d = new Deck();
+  Game *g = new Game();
 
-    g->initializeGame();
+  g->initializeGame();
 
-    
-return 0;
+  return 0;
 }
