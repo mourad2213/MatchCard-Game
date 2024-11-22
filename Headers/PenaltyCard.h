@@ -1,7 +1,7 @@
 #ifndef PENALTYCARD_H
 #define PENALTYCARD_H
 #include <iostream>
-#include "Card.h";
+#include "Card.h"
 using namespace std;
 
 class PenaltyCard : public Card

@@ -20,7 +20,9 @@ public:
         this->direction = direction;
         this->value = number;
     }
-    ~Card();
+    ~Card(){
+        
+    }
 
     void setDirection(bool direction);
     bool getDirection();

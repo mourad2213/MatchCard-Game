@@ -24,12 +24,12 @@ public:
         }
     }
     
-    Deck::~Deck()
+    ~Deck()
     {
         
         for (int i = 0; i < 16; ++i)
         {
-            delete cards[i];
+            delete collection[i];
         }
         delete[] cards; 
     }

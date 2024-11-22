@@ -2,11 +2,11 @@
 #include <algorithm>
 #include <random>
 using namespace std;
-#include "Card.h";
-#include "Deck.h";
-#include "Player.h";
-#include "Game.h";
-#include "BonusCard.h";
+#include "Card.h"
+#include "Deck.h"
+#include "Player.h"
+#include "Game.h"
+#include "BonusCard.h"
 #include "PenaltyCard.h"
 
 void Card::setDirection(bool direction)
@@ -53,21 +53,20 @@ void Deck::DisplayGrid()
 
 void Deck::Shuffle()
 {
-  int numbers[16] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8};
-  random_device rd;
-  mt19937 g(rd());
-  shuffle(numbers, numbers + 16, g);
-  for (int m = 0; m < 16; m++)
-  {
-    for (int i = 0; i < 4; i++)
+    // Use a random device and Mersenne Twister for randomness
+    std::random_device rd; // Random device
+    std::mt19937 g(rd());  // Seeded random number generator
+
+    // Shuffle the collection of cards
+    std::shuffle(collection, collection + 16, g);
+
+    // Optionally, map shuffled collection back to grid (if needed)
+    for (int i = 0; i < 16; ++i)
     {
-      for (int j = 0; j < 4; j++)
-      {
-        Card card(&numbers[m], 0);
-        cards[i][j] = card;
-      }
+        cards[i] = collection[i];
     }
-  }
+
+    cout << "Deck shuffled!" << endl;
 }
 
 int Player::getscore()
@@ -91,6 +90,16 @@ int PenaltyCard::getPenalty(){
 }
 
 void Game::initializeGame(){
-  Deck D;
-  D.Shuffle();
+  d.Shuffle();
+  d.DisplayGrid();
+}
+
+int main(){
+    Deck* d = new Deck();
+    Game* g = new Game();
+
+    g->initializeGame();
+
+    
+return 0;
 }

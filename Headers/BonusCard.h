@@ -1,7 +1,7 @@
 #ifndef BONUSCARD_H
 #define BONUSCARD_H
 #include <iostream>
-#include "Card.h";
+#include "Card.h"
 using namespace std;
 
 class BonusCard : public Card
