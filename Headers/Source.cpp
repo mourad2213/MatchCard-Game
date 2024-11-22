@@ -38,18 +38,17 @@ void Card::display()
 }
 
 void Deck::DisplayGrid()
-{
-  for (int i = 0; i < 4; i++)
-  {
-    for (int j = 0; j < 4; j++)
     {
-      cout << "[";
-      cards[i][j].display();
-      cout << "] ";
+        cout << "Deck Layout (4x4 Grid):" << endl;
+        for (int i = 0; i < 16; i++)
+        {
+            if (i % 4 == 0)
+                cout << endl;
+
+            cout << "[" << cards[i]->getNumber() << "] ";
+        }
+        cout << endl;
     }
-    cout << endl;
-  }
-}
 
 void Deck::Shuffle()
 {
