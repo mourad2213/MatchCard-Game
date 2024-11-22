@@ -26,12 +26,12 @@ public:
     
     Deck::~Deck()
     {
-        // Delete dynamically allocated cards
+        
         for (int i = 0; i < 16; ++i)
         {
             delete cards[i];
         }
-        delete[] cards; // Delete the array of pointers
+        delete[] cards; 
     }
 
     Card **getcards()
