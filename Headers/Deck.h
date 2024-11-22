@@ -28,7 +28,7 @@ public:
                 //m++;
                 }
                 
-             else if(i==8){
+                else if(i==8){
                 collection[m] = new PenaltyCard(0, i); 
                 m++;    
                 collection[m] = new PenaltyCard(0, i); 
