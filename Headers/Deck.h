@@ -3,6 +3,9 @@
 #include <iostream>
 using namespace std;
 #include "Card.h"
+#include "BonusCard.h"
+#include "StandardCard.h"
+#include "PenaltyCard.h"
 class Deck
 {
 private:
@@ -17,16 +20,33 @@ public:
         {
             for (int i = 1; i <= 8; i++)
             {
-                collection[m] = new Card(0, i); //
+                
+                if(i==7){
+                collection[m] = new BonusCard(0, i);     
                 m++;
-                collection[m] = new Card(0, i); //
+                collection[m] = new BonusCard(0, i);    
+                //m++;
+                }
+                
+             else if(i==8){
+                collection[m] = new PenaltyCard(0, i); 
+                m++;    
+                collection[m] = new PenaltyCard(0, i); 
+                ///m++;
+                }
+                else{
+                collection[m] = new StandardCard(0, i); 
+                m++;
+                collection[m] = new StandardCard(0, i); 
+                //m++;
+                }
+        
             }
         }
     }
     
     ~Deck()
     {
-        
         for (int i = 0; i < 16; ++i)
         {
             delete collection[i];
@@ -34,14 +54,8 @@ public:
         delete[] cards; 
     }
 
-    Card **getcards()
-    {
-        return cards;
-    }
-    void setcards(Card **c)
-    {
-        cards = c;
-    }
+    void setcards(Card **c);
+    Card**getcard();
     void Shuffle();
     void DisplayGrid();
 };

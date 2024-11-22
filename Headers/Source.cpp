@@ -47,7 +47,7 @@ void Deck::DisplayGrid()
       cout << endl;
     }
     cout << "[";
-     cards[i]->display();
+    cards[i]->display();
     cout << "] ";
   }
   cout << endl;
@@ -55,10 +55,10 @@ void Deck::DisplayGrid()
 
 void Deck::Shuffle()
 {
-      srand(time(0));
+  srand(time(0));
   for (int i = 0; i < 16; i++)
   {
-    int j = rand() % (15 + 1);//[1,16]
+    int j = rand() % (15 + 1); //[1,16]
     swap(collection[i], collection[j]);
   }
 
@@ -92,10 +92,19 @@ int PenaltyCard::getPenalty()
 
 void Game::initializeGame()
 {
+  //Deck* d2 =new Deck();
   d.Shuffle();
   d.DisplayGrid();
 }
 
+Card **Deck::getcard()
+{
+  return cards;
+}
+void Deck::setcards(Card **c)
+{
+  cards = c;
+}
 int main()
 {
   Deck *d = new Deck();

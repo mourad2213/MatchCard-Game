@@ -1,7 +1,7 @@
 #ifndef STANDARDCAR_H
 #define STANDARDCAR_H
 #include <iostream>
-#include "Card.h";
+#include "Card.h"
 using namespace std;
 
 class StandardCard : public Card
