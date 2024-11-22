@@ -39,15 +39,15 @@ void Card::display()
 
 void Deck::DisplayGrid()
 {
-  for (int i = 0; i < 4; ++i)
+  for (int i = 0; i < 4; i++)
   {
-    for (int j = 0; j < 4; ++j)
+    for (int j = 0; j < 4; j++)
     {
-      std::cout << "[";
+      cout << "[";
       cards[i][j].display();
-      std::cout << "] ";
+      cout << "] ";
     }
-    std::cout << std::endl;
+    cout << endl;
   }
 }
 
