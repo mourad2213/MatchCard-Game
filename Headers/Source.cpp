@@ -48,7 +48,8 @@ void Deck::DisplayGrid()
       cout << endl;
     }
     cout << "[";
-    cards[i]->display();
+    //cards[i]->display();
+    cout<<cards[i]->getValue();
     cout << "] ";
   }
   cout << endl;
@@ -93,7 +94,7 @@ int PenaltyCard::getPenalty()
 
 void Game::initializeGame()
 {
-  //Deck* d2 =new Deck();
+  
   d.Shuffle();
   d.DisplayGrid();
 }
