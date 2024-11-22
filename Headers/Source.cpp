@@ -92,10 +92,19 @@ int PenaltyCard::getPenalty()
 
 void Game::initializeGame()
 {
+  //Deck* d2 =new Deck();
   d.Shuffle();
   d.DisplayGrid();
 }
 
+Card **Deck::getcard()
+{
+  return cards;
+}
+void Deck::setcards(Card **c)
+{
+  cards = c;
+}
 int main()
 {
   Deck *d = new Deck();
