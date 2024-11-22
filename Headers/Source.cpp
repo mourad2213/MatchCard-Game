@@ -46,10 +46,11 @@ void Deck::DisplayGrid()
     if (i % 4 == 0)
     {
       cout << endl;
+      
     }
     cout << "[";
-    //cards[i]->display();
-    cout<<cards[i]->getValue();
+    cards[i]->display();
+  
     cout << "] ";
   }
   cout << endl;
