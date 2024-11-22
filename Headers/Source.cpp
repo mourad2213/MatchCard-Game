@@ -39,12 +39,11 @@ void Card::display()
 
 void Deck::DisplayGrid()
 {
-  cout << "Deck Layout (4x4 Grid):" << endl;
   for (int i = 0; i < 16; i++)
   {
-    if (i % 4 == 0)
+    if (i % 4 == 0){
       cout << endl;
-
+    }
     cout << "[";
     cards[i]->display();
     cout << "] ";
