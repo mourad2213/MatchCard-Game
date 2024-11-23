@@ -11,5 +11,6 @@ public:
 
     StandardCard(bool direction, int value) : Card(direction, value) {
     }
+
 };
 #endif

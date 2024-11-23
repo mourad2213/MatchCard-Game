@@ -9,12 +9,17 @@ using namespace std;
 
 class Deck {
 private:
-    Card **cards = new Card *[4]; // grid
-    //
-    Card *collection[16]; // collection
+    Card **cards; // Grid
+    Card *collection[16]; // Collection
 
 public:
     Deck() {
+        cards = new Card *[4];
+        for (int i = 0; i < 4; ++i) {
+            cards[i] = new Card[4];
+        }
+
+
         for (int m = 0; m < 16;) {
             for (int i = 1; i <= 8; i++) {
                 if (i == 7) {
@@ -38,15 +43,20 @@ public:
     }
 
     ~Deck() {
+        for (int i = 0; i < 4; ++i) {
+            delete[] cards[i];
+        }
+        delete[] cards;
+
+
         for (int i = 0; i < 16; ++i) {
             delete collection[i];
         }
-        delete[] cards;
     }
 
     void setcards(Card **c);
 
-    Card **getcard();
+    Card **getcards();
 
     void Shuffle();
 

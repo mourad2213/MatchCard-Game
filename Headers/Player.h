@@ -10,16 +10,20 @@ private:
 
 public:
     Player() {
-        name = "";
-        score = 0;
+        this->name = "";
+        this->score = 0;
     }
 
     Player(string n, int s) {
-        name = n;
-        score = s;
+        this->name = n;
+        this->score = s;
     }
 
     void displayScore();
+
+    string getName();
+
+    void setName(string n);
 
     void setscore(int s);
 

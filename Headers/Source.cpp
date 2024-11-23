@@ -42,7 +42,7 @@ void Deck::DisplayGrid() {
         }
         cout << "[";
 
-       cards[i]->display();
+        cards[i]->display();
 
         cout << "] ";
     }
@@ -69,8 +69,16 @@ void Player::setscore(int s) {
     this->score = s;
 }
 
+string Player::getName() {
+    return this->name;
+}
+
+void Player::setName(string n) {
+    this->name = n;
+}
+
 void Player::displayScore() {
-    cout << this->score << endl;
+    cout << this->name << " Score: " << this->score << endl;
 }
 
 int BonusCard::getBonus() {
@@ -82,11 +90,13 @@ int PenaltyCard::getPenalty() {
 }
 
 void Game::initializeGame() {
-    d.Shuffle();
-    d.DisplayGrid();
+    d->Shuffle();
+    d->DisplayGrid();
+    p1->displayScore();
+    p2->displayScore();
 }
 
-Card **Deck::getcard() {
+Card **Deck::getcards() {
     return cards;
 }
 
@@ -95,10 +105,10 @@ void Deck::setcards(Card **c) {
 }
 
 int main() {
-    Deck *d = new Deck();
     Game *g = new Game();
 
     g->initializeGame();
 
+    delete g;
     return 0;
 }

@@ -19,7 +19,7 @@ public:
         this->value = number;
     }
 
-    ~Card() {
+    virtual ~Card() {
     }
 
     void setDirection(bool direction);
