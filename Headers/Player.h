@@ -18,6 +18,7 @@ public:
         this->name = n;
         this->score = s;
     }
+    ~Player() {}
 
     void displayScore();
 

@@ -15,6 +15,9 @@ public:
     PenaltyCard(bool direction, int value) : Card(direction, value) {
     }
 
-    int getPenalty();
+    ~PenaltyCard() {
+    }
+
+    int getPenalty() const;
 };
 #endif

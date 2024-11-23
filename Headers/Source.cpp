@@ -36,28 +36,27 @@ void Card::display() {
 }
 
 void Deck::DisplayGrid() {
-    for (int i = 0; i < 16; i++) {
-        if (i % 4 == 0) {
-            cout << endl;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            cout << "[";
+            cards[i][j].display();
+            cout << "] ";
         }
-        cout << "[";
-
-        cards[i]->display();
-
-        cout << "] ";
+        cout << endl;
     }
-    cout << endl;
 }
 
 void Deck::Shuffle() {
     srand(time(0));
     for (int i = 0; i < 16; i++) {
-        int j = rand() % (15 + 1); //[1,16]
+        int j = rand() % 16;
         swap(collection[i], collection[j]);
     }
 
-    for (int i = 0; i < 16; ++i) {
-        cards[i] = collection[i];
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            cards[i][j] = *collection[i * 4 + j];
+        }
     }
 }
 
@@ -81,11 +80,11 @@ void Player::displayScore() {
     cout << this->name << " Score: " << this->score << endl;
 }
 
-int BonusCard::getBonus() {
+int BonusCard::getBonus() const {
     return this->bonus;
 }
 
-int PenaltyCard::getPenalty() {
+int PenaltyCard::getPenalty() const {
     return this->penalty;
 }
 
