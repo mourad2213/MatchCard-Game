@@ -13,7 +13,7 @@ public:
     Game() {
         p2 = new Player("Player 2", 0);
         p1 = new Player("Player 1", 0);
-        d = new Deck(); // Properly allocate the Deck object
+        d = new Deck();
     }
 
     ~Game() {

@@ -9,8 +9,9 @@ using namespace std;
 
 class Deck {
 private:
-    Card **cards; // Grid
-    Card *collection[16]; // Collection
+    Card **cards; // grid
+    //
+    Card *collection[16]; // collection
 
 public:
     Deck() {
