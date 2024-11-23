@@ -4,14 +4,12 @@
 #include "Card.h"
 using namespace std;
 
-class StandardCard : public Card
-{
+class StandardCard : public Card {
 public:
-    StandardCard() : Card()
-    {
+    StandardCard() : Card() {
     }
-     StandardCard(bool direction, int value) : Card(direction, value)
-    {
+
+    StandardCard(bool direction, int value) : Card(direction, value) {
     }
 };
 #endif

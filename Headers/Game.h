@@ -2,8 +2,8 @@
 using namespace std;
 #include "Player.h"
 #include "Deck.h"
-class Game
-{
+
+class Game {
 private:
     Player p1;
 
@@ -12,8 +12,8 @@ private:
     Deck d;
 
 public:
-    Game()
-    {
+    Game() {
     }
+
     void initializeGame();
 };

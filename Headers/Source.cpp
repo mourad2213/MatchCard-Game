@@ -11,109 +11,94 @@ using namespace std;
 #include "PenaltyCard.h"
 #include <time.h>
 
-void Card::setDirection(bool direction)
-{
-  this->direction = direction;
-}
-bool Card::getDirection()
-{
-  return direction;
-}
-void Card::setValue(int number)
-{
-  this->value = number;
-}
-int Card::getValue()
-{
-  return this->value;
-}
-void Card::display()
-{
-  if (this->direction)
-  {
-    cout << this->value; // value
-  }
-  else
-  {
-    cout << "*"; // *
-  }
+void Card::setDirection(bool direction) {
+    this->direction = direction;
 }
 
-void Deck::DisplayGrid()
-{
-  for (int i = 0; i < 16; i++)
-  {
-    if (i % 4 == 0)
-    {
-      cout << endl;
-      
+bool Card::getDirection() {
+    return direction;
+}
+
+void Card::setValue(int number) {
+    this->value = number;
+}
+
+int Card::getValue() {
+    return this->value;
+}
+
+void Card::display() {
+    if (this->direction) {
+        cout << this->value; // value
+    } else {
+        cout << "*"; // *
     }
-    cout << "[";
-    cards[i]->display();
-  
-    cout << "] ";
-  }
-  cout << endl;
 }
 
-void Deck::Shuffle()
-{
-  srand(time(0));
-  for (int i = 0; i < 16; i++)
-  {
-    int j = rand() % (15 + 1); //[1,16]
-    swap(collection[i], collection[j]);
-  }
+void Deck::DisplayGrid() {
+    for (int i = 0; i < 16; i++) {
+        if (i % 4 == 0) {
+            cout << endl;
+        }
+        cout << "[";
 
-  for (int i = 0; i < 16; ++i)
-  {
-    cards[i] = collection[i];
-  }
-}
+        cout << cards[i]->getValue();
 
-int Player::getscore()
-{
-  return this->score;
-}
-void Player::setscore(int s)
-{
-  this->score = s;
+        cout << "] ";
+    }
+    cout << endl;
 }
 
-void Player::displayScore()
-{
-  cout << this->score << endl;
-}
-int BonusCard::getBonus()
-{
-  return this->bonus;
-}
-int PenaltyCard::getPenalty()
-{
-  return this->penalty;
+void Deck::Shuffle() {
+    srand(time(0));
+    for (int i = 0; i < 16; i++) {
+        int j = rand() % (15 + 1); //[1,16]
+        swap(collection[i], collection[j]);
+    }
+
+    for (int i = 0; i < 16; ++i) {
+        cards[i] = collection[i];
+    }
 }
 
-void Game::initializeGame()
-{
-  
-  d.Shuffle();
-  d.DisplayGrid();
+int Player::getscore() {
+    return this->score;
 }
 
-Card **Deck::getcard()
-{
-  return cards;
+void Player::setscore(int s) {
+    this->score = s;
 }
-void Deck::setcards(Card **c)
-{
-  cards = c;
+
+void Player::displayScore() {
+    cout << this->score << endl;
 }
-int main()
-{
-  Deck *d = new Deck();
-  Game *g = new Game();
 
-  g->initializeGame();
+int BonusCard::getBonus() {
+    return this->bonus;
+}
 
-  return 0;
+int PenaltyCard::getPenalty() {
+    return this->penalty;
+}
+
+void Game::initializeGame() {
+    d.Shuffle();
+    d.DisplayGrid();
+}
+
+Card **Deck::getcard() {
+    return cards;
+}
+
+void Deck::setcards(Card **c) {
+    cards = c;
+}
+
+int main() {
+    Deck *d = new Deck();
+    Game *g = new Game();
+
+    g->initializeGame();
+
+    return 0;
 }
