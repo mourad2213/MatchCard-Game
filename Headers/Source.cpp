@@ -53,8 +53,8 @@ void Deck::Shuffle() {
         swap(collection[i], collection[j]);
     }
 
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
             cards[i][j] = *collection[i * 4 + j];
         }
     }
