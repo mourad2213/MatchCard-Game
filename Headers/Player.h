@@ -29,5 +29,7 @@ public:
     void setscore(int s);
 
     int getscore();
+
+     
 };
 #endif

@@ -31,6 +31,10 @@ public:
     int getValue();
 
     virtual void display();
+    void reveal();
+    void hide();
+    void display();
 };
+    
 
 #endif
