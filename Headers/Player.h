@@ -30,6 +30,11 @@ public:
 
     int getscore();
 
+    void incBonus();
+    void incStandard();
+    void decPenalty2();
+    void decPenalty1();
+
      
 };
 #endif

@@ -21,7 +21,6 @@ public:
         delete p2;
         delete d;
     }
-
-
+    void announceWinner(); 
     void initializeGame();
 };

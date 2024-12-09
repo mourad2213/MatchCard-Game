@@ -80,11 +80,11 @@ void Player::displayScore() {
     cout << this->name << " Score: " << this->score << endl;
 }
 
-int BonusCard::getBonus() const {
+int BonusCard::getBonus()  {
     return this->bonus;
 }
 
-int PenaltyCard::getPenalty() const {
+int PenaltyCard::getPenalty()  {
     return this->penalty;
 }
 
@@ -101,6 +101,53 @@ Card **Deck::getcards() {
 
 void Deck::setcards(Card **c) {
     cards = c;
+}
+ void StandardCard::display(){
+    if(this->getDirection()){
+        cout<<"CardType: "<<"Standard"<<endl;
+        cout<<"cardDirection: "<<"Revealed"<<endl;
+    }
+        return;
+}
+ void PenaltyCard::display(){
+    if(this->getDirection()){
+        cout<<"CardType: "<<"Penalty"<<endl;
+        cout<<"cardDirection: "<<"Revealed"<<endl;
+    }
+        return;
+}
+
+ void BonusCard::display(){
+    if(this->getDirection()){
+        cout<<"CardType: "<<"Bonus"<<endl;
+        cout<<"cardDirection: "<<"Revealed"<<endl;
+    }
+        return;
+}
+
+void Card::reveal(){
+    this->setDirection(1);
+}
+void Card::hide(){
+    this->setDirection(0);
+}
+void Game::announceWinner(){
+    if(this->p1->getscore()>this->p2->getscore()){
+        cout<<"Winner: "<<"Player 1"<<endl;
+    }
+    else if(this->p1->getscore()<this->p2->getscore()){
+        cout<<"Winner: "<<"Player 2"<<endl;
+    }
+    else{
+        cout<<"Tie "<<"Player 1 "<<"Player2"<<endl;
+    }
+}
+void Player::decPenalty1(){
+    this->setscore(this->score-1);
+}
+void Deck::reset(){
+    this->Shuffle();
+    this->DisplayGrid();
 }
 
 int main() {

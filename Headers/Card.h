@@ -29,11 +29,10 @@ public:
     void setValue(int number);
 
     int getValue();
-
-    virtual void display();
     void reveal();
     void hide();
     void display();
+    
 };
     
 
