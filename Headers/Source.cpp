@@ -100,6 +100,7 @@ Card **Deck::getcards() {
     return cards;
 }
 
+
 void Deck::setcards(Card **c) {
     cards = c;
 }
