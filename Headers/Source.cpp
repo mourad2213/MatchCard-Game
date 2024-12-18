@@ -9,7 +9,7 @@ using namespace std;
 #include "Game.h"
 #include "BonusCard.h"
 #include "PenaltyCard.h"
-#include <time.h>
+
 
 void Card::setDirection(bool direction) {
     this->direction = direction;
@@ -39,7 +39,9 @@ void Deck::DisplayGrid() {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             if (cards[i][j] != nullptr) {
-                cout << "[" << cards[i][j]->getValue() << "] ";
+                cout << "[";
+                    cards[i][j]->display();
+                cout<< "] ";
 
             } else {
                 cout << "[ ] ";
@@ -52,16 +54,15 @@ void Deck::DisplayGrid() {
 
 
 void Deck::Shuffle() {
-    // Shuffle the collection array
-    random_device rd;
-    mt19937 g(rd());
-    shuffle(collection, collection + 16, g);
+    srand(time(0));
+    for (int i = 0; i < 16; i++) {
+        int j = rand() % 16;
+        swap(collection[i], collection[j]);
+    }
 
-    // Redistribute shuffled cards to the grid
-    int k = 0;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            cards[i][j] = collection[k++];
+            cards[i][j] = collection[i * 4 + j];
         }
     }
 }
@@ -86,21 +87,46 @@ void Player::displayScore() {
     cout << this->name << " Score: " << this->score << endl;
 }
 
-int BonusCard::getBonus() const {
+int BonusCard::getBonus() {
     return this->bonus;
 }
 
-int PenaltyCard::getPenalty() const {
+int PenaltyCard::getPenalty() {
     return this->penalty;
 }
-
+bool Player::getSkipTurn() {
+    return this->skipTurn;
+}
+void Player::setSkipTurn(bool skipTurn) {
+    this->skipTurn = skipTurn;
+}
+bool Player::getExtraTurn() {
+    return this->extraTurn;
+}
+void Player::setExtraTurn(bool extraTurn) {
+    this->extraTurn = extraTurn;
+}
+void Player::addScore(int s) {
+    this->score += s;
+}
+void Player::subtractScore(int s) {
+    this->score -= s;
+}
 void Game::initializeGame() {
     d->Shuffle();
     d->DisplayGrid();
     p1->displayScore();
     p2->displayScore();
 }
-
+void Card::reveal() {
+    this->direction = true;
+}
+void Card::hide() {
+    this->direction = false;
+}
+bool Card::isRevealed() {
+    return direction;
+}
 Card ***Deck::getcards() {
     return cards;
 }
@@ -110,32 +136,44 @@ void Deck::setcards(Card ***c) {
 }
 void Deck::deleteCardAt(int x, int y) {
     if (cards[x][y] != nullptr) {
-        delete cards[x][y];  // Free the memory for the card
-        cards[x][y] = nullptr; // Set the pointer to nullptr
+        delete cards[x][y];
+        cards[x][y] = nullptr;
     }
 }
-void Game::playTurn(Player *player) {
+void Game::playerTurn(Player *player) {
     if (player->getSkipTurn()==true) {
-        cout << player->getName() << "'s turn is skipped due to a penalty!" << endl;
-        player->setSkipTurn(false); // Reset skip flag
+        cout << player->getName() << " turn is skipped due to a penalty" << endl;
+        player->setSkipTurn(false);
         return;
     }
 
-    cout << player->getName() << "'s turn!" << endl;
-
-    // Select two cards
-    int x1, y1, x2, y2;
-    Card *card1 = nullptr, *card2 = nullptr;
-    do {
+    cout << player->getName() << " turn" << endl;
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+    Card *card1 = nullptr;
+    Card *card2 = nullptr;
+    while(true) {
         cout << "Enter the coordinates of the first card (row and column): ";
-        cin >> x1 >> y1;
-        cout << "Enter the coordinates of the second card (row and column): ";
-        cin >> x2 >> y2;
+        while (!(cin >> x1 >> y1)) {
+            cout << "Invalid input! Please enter numeric values for row and column." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Enter the coordinates of the first card (row and column): ";
+        }
 
-        // Validate input
-        if (x1 >= 0 && x1 < 4 && y1 >= 0 && y1 < 4 &&
-            x2 >= 0 && x2 < 4 && y2 >= 0 && y2 < 4 &&
-            !(x1 == x2 && y1 == y2)) {
+        cout << "Enter the coordinates of the second card (row and column): ";
+
+
+        while (!(cin >> x2 >> y2)) {
+            cout << "Invalid input! Please enter numeric values for row and column." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Enter the coordinates of the second card (row and column): ";
+        }
+
+        if (x1 >= 0 && x1 < 4 && y1 >= 0 && y1 < 4 && x2 >= 0 && x2 < 4 && y2 >= 0 && y2 < 4 && !(x1 == x2 && y1 == y2)) {
             card1 = d->getcards()[x1][y1];
             card2 = d->getcards()[x2][y2];
 
@@ -146,22 +184,23 @@ void Game::playTurn(Player *player) {
             }
 
         cout << "Invalid coordinates or cards already revealed. Try again!" << endl;
-    } while (true);
+    }
 
-    // Reveal the selected cards
+
     card1->setDirection(true);
     card2->setDirection(true);
     d->DisplayGrid();
 
-    // Check for match and handle effects
+
     if (card1->getValue() == card2->getValue()) {
-        if (card1->getValue() == 7) { // Bonus cards
+        if (card1->getValue() == 7) { //bonus
             handleBonusCard(player, card1, card2, x1, y1, x2, y2);
-        } else if (card1->getValue() == 8) { // Penalty cards
+        } else if (card1->getValue() == 8) { // penalty
             handlePenaltyCard(player, card1, card2, x1, y1, x2, y2);
-        } else { // Standard cards
+        } else { // standard
             handleStandardCard(player, x1, y1, x2, y2);
         }
+        playerTurn(player);
     } else {
         cout << "No match! Cards will be hidden again." << endl;
         card1->setDirection(false);
@@ -182,14 +221,13 @@ void Game::handleBonusCard(Player* player, Card* card1, Card* card2, int x1, int
             player->setscore(player->getscore() + 2);
         } else if (choice == 2) {
             player->setscore(player->getscore() + 1);
-            playTurn(player); // Allow an additional turn
+            playerTurn(player); // additional turn
         }
     } else {
         player->setscore(player->getscore() + 1);
     }
 
-    // Remove the bonus cards from the grid
-    d->deleteCardAt(x1,y1); // Remove card
+    d->deleteCardAt(x1,y1);
     d->deleteCardAt(x2,y2);
 }
 void Game::handleStandardCard(Player* player, int x1, int y1, int x2, int y2) {
@@ -197,9 +235,9 @@ void Game::handleStandardCard(Player* player, int x1, int y1, int x2, int y2) {
     cout << "Match found! +" << 1 << " point." << endl;
     player->setscore(player->getscore() + 1);
 
-    // Remove the standard cards from the grid
-    d->deleteCardAt(x1, y1); // Hide the card
-    d->deleteCardAt(x2, y2); // Hide the card
+
+    d->deleteCardAt(x1, y1);
+    d->deleteCardAt(x2, y2);
 }
 
 void Game::handlePenaltyCard(Player* player, Card* card1, Card* card2, int x1, int y1, int x2, int y2) {
@@ -212,14 +250,13 @@ void Game::handlePenaltyCard(Player* player, Card* card1, Card* card2, int x1, i
             player->setscore(player->getscore() - 2);
         } else if (choice == 2) {
             player->setscore(player->getscore() - 1);
-            player->setSkipTurn(true); // Set the skip flag for the next turn
+            player->setSkipTurn(true); // skip turn
         }
     } else {
         player->setscore(player->getscore() - 1);
     }
 
-    // Remove the penalty cards from the grid
-    d->deleteCardAt(x1,y1); // Remove card
+    d->deleteCardAt(x1,y1);
     d->deleteCardAt(x2,y2);
 }
 void Game::startGame() {
@@ -227,8 +264,7 @@ void Game::startGame() {
     Player* currentPlayer = p1;
     while (!isGameOver()) {
         d->DisplayGrid();
-        playTurn(currentPlayer);
-        currentPlayer = (currentPlayer == p1) ? p2 : p1;
+        playerTurn(currentPlayer);
     }
     announceWinner();
 }

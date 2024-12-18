@@ -18,6 +18,6 @@ public:
     ~BonusCard() {
     }
 
-    int getBonus() const;
+    int getBonus() ;
 };
 #endif

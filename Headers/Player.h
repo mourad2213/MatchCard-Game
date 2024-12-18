@@ -26,24 +26,18 @@ public:
     void displayScore();
 
     string getName();
-    bool getSkipTurn() {
-        return this->skipTurn;
-    }
-    void setSkipTurn(bool skipTurn) {
-        this->skipTurn = skipTurn;
-    }
-    bool getExtraTurn() {
-        return this->extraTurn;
-    }
-    void setExtraTurn(bool extraTurn) {
-        this->extraTurn = extraTurn;
-    }
+
+    bool getSkipTurn() ;
+    void setSkipTurn(bool skipTurn);
+    bool getExtraTurn() ;
+    void setExtraTurn(bool extraTurn) ;
     void setName(string n);
 
     void setscore(int s);
 
     int getscore();
-    void addScore(int s) { score += s; }
-    void subtractScore(int s) { score -= s; }
+
+    void addScore(int s);
+    void subtractScore(int s);
 };
 #endif

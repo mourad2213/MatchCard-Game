@@ -9,21 +9,21 @@ using namespace std;
 
 class Deck {
 private:
-    Card ***cards; // Grid (2D array of Card pointers)
-    Card *collection[16]; // Collection of cards
+    Card ***cards; // grid 2d array of card pointer
+    Card *collection[16]; // collection
 
 public:
     Deck() {
-        // Allocate a 4x4 grid of Card pointers
+
         cards = new Card **[4];
         for (int i = 0; i < 4; ++i) {
             cards[i] = new Card *[4];
             for (int j = 0; j < 4; ++j) {
-                cards[i][j] = nullptr; // Initialize pointers to nullptr
+                cards[i][j] = nullptr; // null at first
             }
         }
 
-        // Populate collection with 16 cards
+
         for (int m = 0; m < 16;) {
             for (int i = 1; i <= 8; i++) {
                 if (i == 7) {
@@ -51,7 +51,7 @@ public:
     ~Deck() {
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
-                delete cards[i][j]; // Properly delete cards
+                delete cards[i][j]; //delete each card pointer inside the first array
             }
             delete[] cards[i];
         }

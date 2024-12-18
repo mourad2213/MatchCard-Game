@@ -31,9 +31,9 @@ public:
     int getValue();
 
     virtual void display();
-    void reveal() { direction = true; }
-    void hide() { direction = false; }
-    bool isRevealed() const { return direction; }
+    void reveal();
+    void hide();
+    bool isRevealed() ;
 };
 
 #endif

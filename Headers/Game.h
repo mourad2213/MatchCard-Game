@@ -26,11 +26,10 @@ public:
         delete currentPlayer;
     }
 
-    void switchTurn();
 
     void initializeGame();
 
-    void playTurn(Player *player);
+    void playerTurn(Player *player);
 
     void handleBonusCard(Player *player, Card *card1, Card *card2, int x1, int y1, int x2, int y2);
 
