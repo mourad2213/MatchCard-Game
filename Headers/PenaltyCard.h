@@ -18,7 +18,6 @@ public:
     ~PenaltyCard() {
     }
 
-    int getPenalty() ;
-    void display();
+    int getPenalty() const;
 };
 #endif

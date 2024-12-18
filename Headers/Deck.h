@@ -62,6 +62,5 @@ public:
     void Shuffle();
 
     void DisplayGrid();
-    void reset();
 };
 #endif
