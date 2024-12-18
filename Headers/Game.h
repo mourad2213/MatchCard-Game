@@ -44,6 +44,6 @@ public:
 
     void announceWinner();
 
-    void playGame();
-    void announceWinner() const;
+
+
 };

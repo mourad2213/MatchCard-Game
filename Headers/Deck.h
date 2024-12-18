@@ -49,18 +49,19 @@ public:
     }
 
     ~Deck() {
-        // Deallocate the 2D grid of card pointers
         for (int i = 0; i < 4; ++i) {
-            delete[] cards[i]; // Delete each row
+            for (int j = 0; j < 4; ++j) {
+                delete cards[i][j]; // Properly delete cards
+            }
+            delete[] cards[i];
         }
-        delete[] cards; // Delete the array of row pointers
+        delete[] cards;
 
-        // Deallocate cards in the collection
+        // Delete collection of cards
         for (int i = 0; i < 16; ++i) {
             delete collection[i];
         }
     }
-
     void setcards(Card ***c);
     Card ***getcards();
     void deleteCardAt(int x, int y);

@@ -257,7 +257,8 @@ void Game::announceWinner() {
     }
 }
 int main() {
-    Game game;
-    game.startGame();
+    Game* game = new Game();
+    game->startGame();
+
     return 0;
 }
