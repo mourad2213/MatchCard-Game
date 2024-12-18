@@ -57,6 +57,8 @@ public:
 
     void setcards(Card **c);
 
+    void deleteCardAt(int x, int y);
+
     Card **getcards();
 
     void Shuffle();
