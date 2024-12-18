@@ -38,12 +38,11 @@ void Card::display() {
 void Deck::DisplayGrid() {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            if (cards[i*4+j] != nullptr) {
-                // Display the card's value if it's not null
-                cout << "[" << cards[i][j].getValue() << "] ";
+            if (cards[i][j] != nullptr) {
+                cout << "[" << cards[i][j]->getValue() << "] ";
+
             } else {
-                // If the card is null, display an empty space
-                cout << " ";
+                cout << "[ ] ";
             }
         }
         cout << endl;
@@ -53,15 +52,16 @@ void Deck::DisplayGrid() {
 
 
 void Deck::Shuffle() {
-    srand(time(0));
-    for (int i = 0; i < 16; i++) {
-        int j = rand() % 16;
-        swap(collection[i], collection[j]);
-    }
+    // Shuffle the collection array
+    random_device rd;
+    mt19937 g(rd());
+    shuffle(collection, collection + 16, g);
 
+    // Redistribute shuffled cards to the grid
+    int k = 0;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            cards[i][j] = *collection[i * 4 + j];
+            cards[i][j] = collection[k++];
         }
     }
 }
@@ -101,24 +101,23 @@ void Game::initializeGame() {
     p2->displayScore();
 }
 
-Card **Deck::getcards() {
+Card ***Deck::getcards() {
     return cards;
 }
 
-void Deck::setcards(Card **c) {
+void Deck::setcards(Card ***c) {
     cards = c;
 }
 void Deck::deleteCardAt(int x, int y) {
-    if (cards[x*4+y] != nullptr) {
-        cards[x*4+y] = nullptr;// Check if card exists
-        delete[] cards[x*4+y];       // Delete the dynamically allocated card
-          // Set pointer to nullptr to avoid dangling reference
+    if (cards[x][y] != nullptr) {
+        delete cards[x][y];  // Free the memory for the card
+        cards[x][y] = nullptr; // Set the pointer to nullptr
     }
 }
-void Game::playTurn(Player* player) {
-    if (player->getSkipTurn() == true) {
+void Game::playTurn(Player *player) {
+    if (player->getSkipTurn()==true) {
         cout << player->getName() << "'s turn is skipped due to a penalty!" << endl;
-        player->setSkipTurn(false); // Reset the skip flag after skipping this turn
+        player->setSkipTurn(false); // Reset skip flag
         return;
     }
 
@@ -126,6 +125,7 @@ void Game::playTurn(Player* player) {
 
     // Select two cards
     int x1, y1, x2, y2;
+    Card *card1 = nullptr, *card2 = nullptr;
     do {
         cout << "Enter the coordinates of the first card (row and column): ";
         cin >> x1 >> y1;
@@ -133,29 +133,33 @@ void Game::playTurn(Player* player) {
         cin >> x2 >> y2;
 
         // Validate input
-        if ((x1 < 0 || x1 >= 4 || y1 < 0 || y1 >= 4 || x2 < 0 || x2 >= 4 || y2 < 0 || y2 >= 4) ||
-            (x1 == x2 && y1 == y2) || d->getcards()[x1][y1].getDirection() || d->getcards()[x2][y2].getDirection()) {
-            cout << "Invalid coordinates or cards already revealed. Try again!" << endl;
-            } else {
+        if (x1 >= 0 && x1 < 4 && y1 >= 0 && y1 < 4 &&
+            x2 >= 0 && x2 < 4 && y2 >= 0 && y2 < 4 &&
+            !(x1 == x2 && y1 == y2)) {
+            card1 = d->getcards()[x1][y1];
+            card2 = d->getcards()[x2][y2];
+
+            if (card1 != nullptr && card2 != nullptr &&
+                !card1->getDirection() && !card2->getDirection()) {
                 break;
+                }
             }
+
+        cout << "Invalid coordinates or cards already revealed. Try again!" << endl;
     } while (true);
 
     // Reveal the selected cards
-    d->getcards()[x1][y1].setDirection(true);
-    d->getcards()[x2][y2].setDirection(true);
+    card1->setDirection(true);
+    card2->setDirection(true);
     d->DisplayGrid();
 
-    // Handle card effects
-    Card* card1 = &d->getcards()[x1][y1];
-    Card* card2 = &d->getcards()[x2][y2];
-
+    // Check for match and handle effects
     if (card1->getValue() == card2->getValue()) {
-        if (card1->getValue() == 7) { // Bonus card
+        if (card1->getValue() == 7) { // Bonus cards
             handleBonusCard(player, card1, card2, x1, y1, x2, y2);
-        } if (card1->getValue() == 8) { // Penalty card
+        } else if (card1->getValue() == 8) { // Penalty cards
             handlePenaltyCard(player, card1, card2, x1, y1, x2, y2);
-        } else { // Standard card
+        } else { // Standard cards
             handleStandardCard(player, x1, y1, x2, y2);
         }
     } else {
@@ -232,7 +236,7 @@ void Game::startGame() {
 bool Game::isGameOver() {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            if (d->getcards()[i][j].getDirection() == false) {
+            if (d->getcards()[i][j] != nullptr && !d->getcards()[i][j]->getDirection()) {
                 return false;
             }
         }

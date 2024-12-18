@@ -23,6 +23,7 @@ public:
         delete p1;
         delete p2;
         delete d;
+        delete currentPlayer;
     }
 
     void switchTurn();
