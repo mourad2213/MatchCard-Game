@@ -256,9 +256,3 @@ void Game::announceWinner() {
         cout << "It's a tie!" << endl;
     }
 }
-int main() {
-    Game* game = new Game();
-    game->startGame();
-
-    return 0;
-}
