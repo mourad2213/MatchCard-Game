@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/DELL/CLionProjects/programmingend/build",
+  "command": "C:\\mingw64\\bin\\clang++.exe  @CMakeFiles/programmingend.dir/includes_CXX.rsp -g -o CMakeFiles\\programmingend.dir\\Headers\\Source.cpp.obj -c C:\\Users\\DELL\\CLionProjects\\programmingend\\Headers\\Source.cpp",
+  "file": "C:/Users/DELL/CLionProjects/programmingend/Headers/Source.cpp",
+  "output": "CMakeFiles/programmingend.dir/Headers/Source.cpp.obj"
+}
+]

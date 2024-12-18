@@ -1,0 +1,3 @@
+C:/Users/DELL/CLionProjects/programmingend/build/CMakeFiles/programmingend.dir
+C:/Users/DELL/CLionProjects/programmingend/build/CMakeFiles/edit_cache.dir
+C:/Users/DELL/CLionProjects/programmingend/build/CMakeFiles/rebuild_cache.dir
