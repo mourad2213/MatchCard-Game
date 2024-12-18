@@ -40,7 +40,7 @@ void Deck::DisplayGrid() {
         for (int j = 0; j < 4; j++) {
             if (cards[i][j] != nullptr) {
                 cout << "[";
-                    cout<<cards[i][j]->getValue();
+                    cards[i][j]->display();
                 cout<< "] ";
 
             } else {
